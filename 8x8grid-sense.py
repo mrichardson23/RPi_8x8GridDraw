@@ -8,9 +8,11 @@ from buttons import Button
 import png # pypng
 from sense_hat import AstroPi
 import copy, time
+import subprocess
 
 saved = True
 warning = False
+animation_process = None
 pygame.init()
 pygame.font.init()
 
@@ -21,7 +23,7 @@ pygame.mouse.set_visible(1)
 
 background = pygame.Surface(screen.get_size())
 background = background.convert()
-background.fill((0, 51, 25))
+background.fill((40, 40, 40))
 colour = (255,0,0) # Set default colour to red
 rotation = 0
 frame_number  = 1
@@ -306,8 +308,8 @@ def slower():
 	if fps != 1:
 		fps-=1
 
-def exportAni():
-
+def start_animation():
+	global animation_process
 	global saved
 	FILE=open('animation8x8.py','wb')
 	FILE.write('from sense_hat import AstroPi\n')
@@ -336,17 +338,23 @@ def exportAni():
 		FILE.write(str(grid))
 		FILE.write(',\n')
 	FILE.write(']\n')
-	FILE.write('for x in FRAMES:\n')
-	FILE.write('\t ap.set_pixels(x)\n')
-	FILE.write('\t time.sleep('+ str(1.0/fps) + ')\n')
+	FILE.write('while True:\n')
+	FILE.write('\tfor x in FRAMES:\n')
+	FILE.write('\t\tap.set_pixels(x)\n')
+	FILE.write('\t\ttime.sleep('+ str(1.0/fps) + ')\n')
 	FILE.close()
 	saved = True
+	if animation_process is not None:
+		animation_process.terminate()
+	animation_process = subprocess.Popen(["python", "/home/pi/RPi_8x8GridDraw/animation8x8.py"])
 
 def prog_exit():
 	print('exit clicked')
 	global warning
 	warning = False
 	clearGrid()
+	if animation_process is not None:
+		animation_process.terminate()
 	pygame.quit()
 	sys.exit()
 
@@ -356,59 +364,15 @@ def save_it():
 	exportAni()
 	warning = False
 
-def importAni():
-        global leds
-        global frame_number
-	with open('animation8x8.py') as ll:
-		line_count = sum(1 for _ in ll)
-	ll.close()
+def stop_animation():
+	global animation_process
+	if animation_process is not None:
+		animation_process.terminate()
 
-	#animation = {}
-	frame_number = 1
-	file = open('animation8x8.py')
-	for r in range(4):
-		file.readline()
-
-	for frame  in range(line_count-8):
-		buff = file.readline()
-
-		load_frame = buff.split('], [')
-		counter = 1
-		leds =[]
-		for f in load_frame:
-                        
-			if counter == 1:
-				f = f[2:]
-			elif counter == 64:
-                                
-				f = f[:-4]
-			
-			y = int(counter-1)/8
-			x = int(counter-1)%8
-			
-			#print(str(counter) + ' ' + f + ' x= ' + str(x) + ' y= ' + str(y))
-			led = LED(pos=(x, y))
-			if f == '0, 0, 0':
-				led.lit = False
-			
-			else:
-				led.lit = True
-				f_colours = f.split(',')
-				#print(f_colours)
-				led.color = [int(f_colours[0]),int(f_colours[1]),int(f_colours[2])]
-			leds.append(led)
-			counter+=1
-		animation[frame_number] = copy.deepcopy(leds)
-		frame_number+=1
-		counter+=1
-
-	file.close()
-	#drawEverything()
-
-exportAniButton = Button('Export to py', action=exportAni,  pos=(10, 460), color=(153,0,0))
-buttons.append(exportAniButton)
-importAniButton = Button('Import from file', action=importAni,  pos=(10, 495), color=(153,0,0))
-buttons.append(importAniButton)
+startAnimationButton = Button('PLAY', action=start_animation,  pos=(10, 460), color=(153,0,0))
+buttons.append(startAnimationButton)
+stopAnimationButton = Button('STOP', action=stop_animation,  pos=(10, 495), color=(153,0,0))
+buttons.append(stopAnimationButton)
 
 exportConsButton = Button('Export to console', action=exportCons, pos=(120, 460), color=(160,160,160))
 buttons.append(exportConsButton)
