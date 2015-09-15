@@ -236,7 +236,7 @@ animation={}
 def start_animation():
 	global animation_process
 	global saved
-	FILE=open('animation8x8.py','wb')
+	FILE=open('/home/pi/RPi_8x8GridDraw/animation8x8.py','wb')
 	FILE.write('from sense_hat import AstroPi\n')
 	FILE.write('import time\n')
 	FILE.write('ap=AstroPi()\n')
