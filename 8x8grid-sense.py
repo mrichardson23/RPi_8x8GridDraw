@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 # bookmarks http://www.one-tab.com/page/Ds6dSsBoSX24cD8OSxqKcA
 import pygame
 import sys
@@ -17,13 +19,13 @@ pygame.init()
 pygame.font.init()
 
 ap=AstroPi()
-screen = pygame.display.set_mode((500, 530), 0, 32)
+screen = pygame.display.set_mode((540, 550), 0, 32)
 pygame.display.set_caption('Sense HAT Grid Editor')
 pygame.mouse.set_visible(1)
 
 background = pygame.Surface(screen.get_size())
 background = background.convert()
-background.fill((40, 40, 40))
+background.fill((80, 80, 80))
 colour = (255,0,0) # Set default colour to red
 rotation = 0
 frame_number  = 1
@@ -156,9 +158,9 @@ def drawEverything():
 	
 	frame_text = 'Frame ' + str(frame_number) 
 	text = font.render(frame_text,1,(255,255,255))
-	screen.blit(text, (30,440))
+	screen.blit(text, (20,465))
 	font = pygame.font.Font(None,18)
-	pygame.draw.circle(screen,colour,(470,355),20,0)
+	pygame.draw.circle(screen,colour,(500,375),20,0)
 	#flip the screen
 	if warning:
 		for button in buttons_warn:
@@ -307,38 +309,35 @@ def stop_animation():
 		animation_process.terminate()
 		animation_process = None
 
-startAnimationButton = Button('PLAY', action=start_animation,  size=(80,40), pos=(190, 460), color=(0,200,0))
-buttons.append(startAnimationButton)
-stopAnimationButton = Button('STOP', action=stop_animation, size=(40,40), pos=(275, 460), color=(200,0,0))
-buttons.append(stopAnimationButton)
-
-startOverButton = Button('Start Over', action=start_over, size=(100,40),  pos=(395, 460), color=(150,150,150))
-buttons.append(startOverButton)
-
-RedButton = Button('', action=setColourRed, size=(50,30), pos=(445, 10),hilight=(0, 200, 200),color=(255,0,0))
+RedButton = Button('', action=setColourRed, size=(50,30), pos=(475, 20),hilight=(0, 200, 200),color=(255,0,0))
 buttons.append(RedButton)
-OrangeButton = Button('', action=setColourOrange, size=(50,30), pos=(445, 45),hilight=(0, 200, 200),color=(255,128,0))
+OrangeButton = Button('', action=setColourOrange, size=(50,30), pos=(475, 55),hilight=(0, 200, 200),color=(255,128,0))
 buttons.append(OrangeButton)
-YellowButton = Button('', action=setColourYellow, size=(50,30), pos=(445, 80),hilight=(0, 200, 200),color=(255,255,0))
+YellowButton = Button('', action=setColourYellow, size=(50,30), pos=(475, 90),hilight=(0, 200, 200),color=(255,255,0))
 buttons.append(YellowButton)
-GreenButton = Button('', action=setColourGreen, size=(50,30), pos=(445, 115),hilight=(0, 200, 200),color=(0,255,0))
+GreenButton = Button('', action=setColourGreen, size=(50,30), pos=(475, 125),hilight=(0, 200, 200),color=(0,255,0))
 buttons.append(GreenButton)
-CyanButton = Button('', action=setColourCyan, size=(50,30), pos=(445, 150),hilight=(0, 200, 200),color=(0,255,255))
+CyanButton = Button('', action=setColourCyan, size=(50,30), pos=(475, 160),hilight=(0, 200, 200),color=(0,255,255))
 buttons.append(CyanButton)
-BlueButton = Button('', action=setColourBlue, size=(50,30), pos=(445, 185),hilight=(0, 200, 200),color=(0,0,255))
+BlueButton = Button('', action=setColourBlue, size=(50,30), pos=(475, 195),hilight=(0, 200, 200),color=(0,0,255))
 buttons.append(BlueButton)
-PurpleButton = Button('', action=setColourPurple, size=(50,30), pos=(445, 220),hilight=(0, 200, 200),color=(102,0,204))
+PurpleButton = Button('', action=setColourPurple, size=(50,30), pos=(475, 230),hilight=(0, 200, 200),color=(102,0,204))
 buttons.append(PurpleButton)
-PinkButton = Button('', action=setColourPink, size=(50,30), pos=(445, 255),hilight=(0, 200, 200),color=(255,0,255))
+PinkButton = Button('', action=setColourPink, size=(50,30), pos=(475, 265),hilight=(0, 200, 200),color=(255,0,255))
 buttons.append(PinkButton)
-WhiteButton = Button('', action=setColourWhite, size=(50,30), pos=(445, 290),hilight=(0, 200, 200),color=(255,255,255))
+WhiteButton = Button('', action=setColourWhite, size=(50,30), pos=(475, 300),hilight=(0, 200, 200),color=(255,255,255))
 buttons.append(WhiteButton)
 
-
-PrevFrameButton = Button('<-', action=prevFrame, size=(40,40), pos=(10, 460), color=(150,150,150))
+PrevFrameButton = Button(u'←', action=prevFrame, size=(40,40), pos=(20, 485), color=(150,150,150), fontsize=30)
 buttons.append(PrevFrameButton)
-NextFrameButton = Button('->', action=nextFrame, size=(40,40), pos=(55, 460), color=(150,150,150))
+NextFrameButton = Button(u'→', action=nextFrame, size=(40,40), pos=(65, 485), color=(150,150,150), fontsize=30)
 buttons.append(NextFrameButton)
+startAnimationButton = Button('PLAY', action=start_animation,  size=(80,40), pos=(210, 485), color=(0,200,0))
+buttons.append(startAnimationButton)
+stopAnimationButton = Button('STOP', action=stop_animation, size=(40,40), pos=(295, 485), color=(200,0,0))
+buttons.append(stopAnimationButton)
+startOverButton = Button('Start Over', action=start_over, size=(100,40),  pos=(415, 485), color=(150,150,150))
+buttons.append(startOverButton)
 
 saveButton = Button('Save', action=save_it, size=(60,50), pos=(150, 180),hilight=(200, 0, 0),color=(255,255,0))
 buttons_warn.append(saveButton)

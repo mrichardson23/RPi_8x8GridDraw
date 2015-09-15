@@ -8,11 +8,11 @@ class LED():
         
         self.pos = pos
         self.lit = lit
-        self.radius = radius
+        self.radius = int(radius)
         self.screen = pygame.display.get_surface()
         self.color = (255, 255, 255)
-        self.pos_x = int(self.pos[0] * (self.radius * 2 + 5)) + (self.radius)
-        self.pos_y = int(self.pos[1] * (self.radius * 2 + 5)) + (self.radius)
+        self.pos_x = int(self.pos[0] * (self.radius * 2 + 5)) + (self.radius) + 20
+        self.pos_y = int(self.pos[1] * (self.radius * 2 + 5)) + (self.radius) + 20
 
     def draw(self):
         
