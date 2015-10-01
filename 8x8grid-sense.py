@@ -27,24 +27,23 @@ rotation = 0
 frame_number  = 1
 fps = 4
 
-
-
 def setColourRed():
-	global colour 
-	colour = (255,0,0)
+        global colour
+        colour = (255,0,0)
 
 def setColourBlue():
-	global colour 
-	colour = (0,0,255)
+        global colour
+        colour = (0,0,255)
 
 def setColourGreen():
-	global colour 
-	colour = (0,255,0)
+        global colour
+        colour = (0,255,0)
 
 def setColourPurple():
-	global colour 
-	colour = (102,0,204)
+        global colour
+        colour = (102,0,204)
 
+        
 def setColourPink():
 	global colour 
 	colour = (255,0,255)
@@ -309,7 +308,7 @@ def slower():
 def exportAni():
 
 	global saved
-	FILE=open('animation8x8.py','wb')
+	FILE=open('animation8x8.py','w')
 	FILE.write('from sense_hat import AstroPi\n')
 	FILE.write('import time\n')
 	FILE.write('ap=AstroPi()\n')
@@ -359,51 +358,50 @@ def save_it():
 def importAni():
         global leds
         global frame_number
-	with open('animation8x8.py') as ll:
-		line_count = sum(1 for _ in ll)
-	ll.close()
+        with open('animation8x8.py') as ll:
+                line_count = sum(1 for _ in ll)
+        ll.close()
 
 	#animation = {}
-	frame_number = 1
-	file = open('animation8x8.py')
-	for r in range(4):
-		file.readline()
+        frame_number = 1
+        file = open('animation8x8.py')
+        for r in range(4):
+                file.readline()
 
-	for frame  in range(line_count-8):
-		buff = file.readline()
+        for frame  in range(line_count-8):
+                buff = file.readline()
 
-		load_frame = buff.split('], [')
-		counter = 1
-		leds =[]
-		for f in load_frame:
-                        
-			if counter == 1:
-				f = f[2:]
-			elif counter == 64:
-                                
-				f = f[:-4]
-			
-			y = int(counter-1)/8
-			x = int(counter-1)%8
+                load_frame = buff.split('], [')
+                counter = 1
+                leds =[]
+
+                for f in load_frame:
+                        if counter == 1:
+                                f = f[2:]
+                        elif counter == 64:
+                                f = f[:-4]
+
+                        y = int(counter-1)/8
+                        x = int(counter-1)%8
 			
 			#print(str(counter) + ' ' + f + ' x= ' + str(x) + ' y= ' + str(y))
-			led = LED(pos=(x, y))
-			if f == '0, 0, 0':
-				led.lit = False
-			
-			else:
-				led.lit = True
-				f_colours = f.split(',')
-				#print(f_colours)
-				led.color = [int(f_colours[0]),int(f_colours[1]),int(f_colours[2])]
-			leds.append(led)
-			counter+=1
-		animation[frame_number] = copy.deepcopy(leds)
-		frame_number+=1
-		counter+=1
+                        led = LED(pos=(x, y))
+                        if f == '0, 0, 0':
+                                led.lit = False
 
-	file.close()
-	#drawEverything()
+                        else:
+                                led.lit = True
+                                f_colours = f.split(',')
+                                #print(f_colours)
+                                led.color = [int(f_colours[0]),int(f_colours[1]),int(f_colours[2])]
+                        leds.append(led)
+                        counter+=1
+                animation[frame_number] = copy.deepcopy(leds)
+                frame_number+=1
+                counter+=1
+
+        file.close()
+        #drawEverything()
 
 exportAniButton = Button('Export to py', action=exportAni,  pos=(10, 460), color=(153,0,0))
 buttons.append(exportAniButton)
