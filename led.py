@@ -46,7 +46,7 @@ class LED():
         # Draws a square
         pygame.draw.rect(self.screen,self.color,(self.pos_x-25, self.pos_y-25, 50,50),thickness)
 
-    def clicked(self, colour,colours):
+    def clicked(self, colour):
         
         # what to do when clicked
         self.color = colour
