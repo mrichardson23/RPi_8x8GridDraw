@@ -1,5 +1,5 @@
 import pygame
-
+from pygame import gfxdraw
 colours = dict(
 r = (255,0,0),
 o = (255,128,0),
@@ -23,9 +23,9 @@ class LED():
         self.lit = lit
         self.radius = radius
         self.screen = pygame.display.get_surface()
-        self.color = (255, 255, 255)
-        self.pos_x = int(self.pos[0] * (self.radius * 2 + 5)) + (self.radius)
-        self.pos_y = int(self.pos[1] * (self.radius * 2 + 5)) + (self.radius)
+        self.color = [255, 255, 255]
+        self.pos_x = int(self.pos[0] * (self.radius * 2 + 5)) + (self.radius) + 20
+        self.pos_y = int(self.pos[1] * (self.radius * 2 + 5)) + (self.radius) + 20
 
     @property
     def color_name(self):
@@ -41,7 +41,7 @@ class LED():
             self.color = [255,255,255]
             thickness = 1
 
-        pygame.draw.circle(self.screen, self.color, (self.pos_x, self.pos_y), self.radius, thickness)
+        gfxdraw.aacircle(self.screen, self.pos_x, self.pos_y, self.radius - 5, (255,255,255))
 
         # Draws a square
         pygame.draw.rect(self.screen,self.color,(self.pos_x-25, self.pos_y-25, 50,50),thickness)

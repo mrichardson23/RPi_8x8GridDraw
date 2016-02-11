@@ -99,3 +99,9 @@ YELLOW:[255,255,0]
 WHITE:[255,255,255]
 
 CYAN: [0,255,255]
+
+### Notes
+
+Flickering cursor issues? Try this and reboot:
+
+        sudo mv /usr/share/icons/Adwaita/ /usr/share/icons/Adwaita.fix

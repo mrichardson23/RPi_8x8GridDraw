@@ -2,7 +2,7 @@ import pygame
 
 
 class Button():
-    def __init__(self, text, pos, action=None, size=(100, 30), color=(0, 0, 153), hilight=(0, 200, 200)):
+    def __init__(self, text, pos, action=None, size=(100, 30), color=(0, 0, 153), hilight=(0, 200, 200), fontsize=18):
        # Button class 
 
         self.normal = color
@@ -10,7 +10,7 @@ class Button():
         self.rect = pygame.Rect(pos, size)
         self.mouseover = False
         self.text = text
-        self.font = pygame.font.Font(None, 18)
+        self.font = pygame.font.Font(None, fontsize)
         self.text_image = self.font.render(text, 1, (0,51,25))
         w, h = self.font.size(text)  # size of font image
         self.text_pos = (pos[0] + size[0] / 2 - w / 2, pos[1] + size[1] / 2 - h / 2)  # center text
