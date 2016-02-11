@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=Sense HAT Grid Editor
+Comment=Launch this to make animations with the Sense HAT
+Icon=/home/pi/RPi_8x8GridDraw/grideditoricon.png
+Exec=python /home/pi/RPi_8x8GridDraw/sense_grid.py
+Type=Application
+Encoding=UTF-8
+Terminal=false
+Categories=None;
