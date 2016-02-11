@@ -7,7 +7,7 @@ import math
 from pygame.locals import *
 from led import LED
 from buttons import Button
-import png # pypng
+#import png # pypng
 from sense_hat import AstroPi
 import copy, time
 import subprocess
@@ -168,7 +168,6 @@ def drawEverything():
 	pygame.display.flip()
 
 def load_leds_to_animation():
-
 	global frame_number
 	global leds
 	for saved_led in animation[frame_number]:
@@ -179,7 +178,6 @@ def load_leds_to_animation():
 							led.lit = True
 
 def nextFrame():
-	
 	global frame_number
 	global leds
 	#print(frame_number)
@@ -197,7 +195,6 @@ def nextFrame():
 	
 
 def prevFrame():
-
 	global frame_number
 	global leds
 	#print(frame_number)
@@ -214,7 +211,6 @@ def prevFrame():
 		load_leds_to_animation()
 
 def getLitLEDs():
-
 	points = []
 	for led in leds:
 		if led.lit:
@@ -332,9 +328,9 @@ PrevFrameButton = Button(u'←', action=prevFrame, size=(40,40), pos=(20, 485), 
 buttons.append(PrevFrameButton)
 NextFrameButton = Button(u'→', action=nextFrame, size=(40,40), pos=(65, 485), color=(150,150,150), fontsize=30)
 buttons.append(NextFrameButton)
-startAnimationButton = Button('PLAY', action=start_animation,  size=(80,40), pos=(210, 485), color=(0,200,0))
+startAnimationButton = Button('PLAY', action=start_animation,  size=(80,40), pos=(180, 485), color=(0,200,0))
 buttons.append(startAnimationButton)
-stopAnimationButton = Button('STOP', action=stop_animation, size=(40,40), pos=(295, 485), color=(200,0,0))
+stopAnimationButton = Button('STOP', action=stop_animation, size=(80,40), pos=(270, 485), color=(200,0,0))
 buttons.append(stopAnimationButton)
 startOverButton = Button('Start Over', action=start_over, size=(100,40),  pos=(415, 485), color=(150,150,150))
 buttons.append(startOverButton)
