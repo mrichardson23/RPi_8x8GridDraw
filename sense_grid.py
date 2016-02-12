@@ -154,11 +154,11 @@ def drawEverything():
 		led.draw()
 	for button in buttons:
 		button.draw(screen)
-	font = pygame.font.Font(None,16)
+	font = pygame.font.Font(None,26)
 	
 	frame_text = 'Frame ' + str(frame_number) 
 	text = font.render(frame_text,1,(255,255,255))
-	screen.blit(text, (20,465))
+	screen.blit(text, (20,460))
 	font = pygame.font.Font(None,18)
 	pygame.draw.circle(screen,colour,(500,375),20,0)
 	#flip the screen
