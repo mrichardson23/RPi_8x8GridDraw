@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=Sense HAT Python
+Comment=Launch this to try out the Sense HAT Python module!
+Icon=/usr/share/pixmaps/python2.7.xpm
+Exec=idle3 -r /home/pi/RPi_8x8GridDraw/python_loader.py
+Type=Application
+Encoding=UTF-8
+Terminal=false
+Categories=None;
