@@ -1,6 +1,9 @@
 # 8x8GridDraw
 
-This is based on https://github.com/topshed/RPi_8x8GridDraw but modified to be used as a drop-in activity. To install: 
+This is based on https://github.com/topshed/RPi_8x8GridDraw but modified to be used as a drop-in activity at events. There are two levels to this activity:
+
+1. The point-and-click interface for creating animations on the Sense HAT's LED matrix. This is meant for some quick fun and can be used by younger participants who can't read, but can point and click with a mouse.
+2. The Python command line interpreter interface for trying out the Sense HAT functions. This is meant to get people coding quickly. The shortcut installed on the desktop loads the Sense HAT module automatically and creates a SenseHat() object that's ready to use right away.
 
 ## Installation
 
