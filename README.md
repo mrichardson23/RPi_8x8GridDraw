@@ -12,7 +12,7 @@ You can clone is repo and run it manually. Alternatively, you can open the Termi
     cd ~
     curl -L bit.ly/1PQeM7a | sh
 
-The full details about this activity can be found here: https://dl.dropboxusercontent.com/u/48482/Sense-Hat-Activity-Plan.pdf
+The full details about this activity can be found in the Sense-Hat-Activity-Plan.pdf file in this repo.
 
 ## Notes
 
